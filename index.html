@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark" data-contrast="normal">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ELECTO – Modern Election Awareness Platform</title>
+  <meta name="description" content="Know the Process. Verify the Facts. Make an Informed Choice. Modern civic-tech platform for transparent election awareness, EVM/VVPAT simulator, and fact checking.">
+
+  <!-- Core CSS -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/components.css">
+</head>
+<body>
+
+  <!-- Fixed Modern Navigation Bar -->
+  <header class="navbar" role="banner">
+    <div class="container nav-container">
+      <a href="#home" class="brand-logo" aria-label="ELECTO Home">
+        <span class="brand-badge">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            <path d="m9 12 2 2 4-4"/>
+          </svg>
+        </span>
+        ELECTO
+      </a>
+
+      <!-- Desktop Nav Links -->
+      <nav aria-label="Primary Navigation">
+        <ul class="nav-links">
+          <li><a href="#home" class="nav-link active" data-i18n="navHome">Home</a></li>
+          <li><a href="#journey" class="nav-link" data-i18n="navJourney">Election Journey</a></li>
+          <li><a href="#timeline" class="nav-link" data-i18n="navTimeline">Timeline</a></li>
+          <li><a href="#explain" class="nav-link" data-i18n="navExplain">Explain Simply</a></li>
+          <li><a href="#simulator" class="nav-link" data-i18n="navSimulator">Simulator</a></li>
+          <li><a href="#fact-check" class="nav-link" data-i18n="navFactCheck">Before You Share</a></li>
+          <li><a href="#roles" class="nav-link" data-i18n="navRoles">Who Does What?</a></li>
+        </ul>
+      </nav>
+
+      <!-- Utility & Accessibility Controls -->
+      <div class="nav-controls">
+        <!-- Smart Search Trigger Button -->
+        <button type="button" class="control-btn" id="search-open-btn" aria-label="Search platform (Ctrl+K)" title="Quick Search (Ctrl+K)">
+          🔍
+        </button>
+
+        <!-- Sound Toggle -->
+        <button type="button" class="control-btn" id="sound-toggle-btn" aria-label="Toggle Sound Effects" title="Sound Effects">
+          🔊
+        </button>
+
+        <!-- Font Size Adjustment -->
+        <div style="display: flex; gap: 2px;">
+          <button type="button" class="control-btn font-size-btn" data-action="dec" title="Decrease font size" aria-label="Smaller text">A-</button>
+          <button type="button" class="control-btn font-size-btn" data-action="inc" title="Increase font size" aria-label="Larger text">A+</button>
+        </div>
+
+        <!-- High Contrast Mode Toggle -->
+        <button type="button" class="control-btn" id="contrast-toggle-btn" aria-label="Toggle High Contrast Mode" title="High Contrast Mode">
+          👁️
+        </button>
+
+        <!-- Theme Mode Toggle -->
+        <button type="button" class="control-btn" id="theme-toggle-btn" aria-label="Toggle Light/Dark Theme" title="Toggle Theme">
+          ☀️
+        </button>
+
+        <!-- Multilingual Dropdown -->
+        <div class="lang-select-wrapper">
+          <select id="lang-selector" class="lang-select" aria-label="Select Language">
+            <option value="en">English</option>
+            <option value="kn">ಕನ್ನಡ</option>
+            <option value="hi">हिंदी</option>
+          </select>
+          <span class="lang-icon">▼</span>
+        </div>
+
+        <!-- Mobile Hamburger Button -->
+        <button type="button" class="hamburger-btn" id="mobile-hamburger" aria-label="Open Mobile Menu" aria-expanded="false">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer -->
+  <div class="mobile-nav-drawer" id="mobile-nav-drawer" role="dialog" aria-modal="true" aria-label="Mobile Navigation Menu">
+    <ul class="mobile-nav-links">
+      <li><a href="#home" data-i18n="navHome">🏠 Home</a></li>
+      <li><a href="#journey" data-i18n="navJourney">🗺️ Election Journey</a></li>
+      <li><a href="#timeline" data-i18n="navTimeline">⏳ Timeline</a></li>
+      <li><a href="#explain" data-i18n="navExplain">🧠 Explain Simply</a></li>
+      <li><a href="#simulator" data-i18n="navSimulator">🎮 Simulator</a></li>
+      <li><a href="#fact-check" data-i18n="navFactCheck">🔍 Before You Share</a></li>
+      <li><a href="#roles" data-i18n="navRoles">👥 Who Does What?</a></li>
+    </ul>
+    <div style="margin-top: 1rem; border-top: 1px solid var(--border-glass); padding-top: 1.5rem;">
+      <button type="button" class="btn btn-primary" style="width: 100%;" id="mobile-search-btn" onclick="document.getElementById('mobile-hamburger').click(); window.appCoordinator.openSearchModal();">
+        🔍 Quick Search (Ctrl+K)
+      </button>
+    </div>
+  </div>
+
+  <main>
+    <!-- MODULE 1: HOME & HERO SECTION -->
+    <section class="hero-section" id="home">
+      <div class="container hero-grid">
+        <div class="hero-content">
+          <div class="hero-pill">
+            <span class="pulse-dot"></span>
+            <span>CIVIC INTELLIGENCE PLATFORM</span>
+          </div>
+
+          <h1 class="hero-title">
+            ELECTO <br>
+            <span class="gradient-text" data-i18n="heroTitle">Democracy with Clarity & Integrity</span>
+          </h1>
+
+          <p class="hero-tagline" data-i18n="tagline">
+            “Know the Process. Verify the Facts. Make an Informed Choice.”
+          </p>
+
+          <p class="hero-description" data-i18n="heroDesc">
+            ELECTO is India’s premier futuristic civic-tech platform. Understand how your vote is counted and protected, experience an authentic EVM/VVPAT simulation, and verify election claims with total legal clarity.
+          </p>
+
+          <div class="hero-cta-group">
+            <a href="#journey" class="btn btn-primary" data-i18n="btnStartJourney">
+              🗺️ Start Journey
+            </a>
+            <a href="#simulator" class="btn btn-secondary" data-i18n="btnLaunchSim">
+              🎮 Launch Voting Simulator
+            </a>
+            <button type="button" class="btn btn-saffron" id="badges-view-btn">
+              🏆 My Badges & Streak
+            </button>
+          </div>
+
+          <!-- User Civic Learning Progress Bar -->
+          <div class="user-civic-stats">
+            <div class="stat-item">
+              <span class="stat-label">Active Streak</span>
+              <span class="stat-value" id="user-streak-display">🔥 1 Day</span>
+            </div>
+            <div class="stat-progress-bar-wrap">
+              <div style="display: flex; justify-content: space-between; font-size: 0.8rem; font-weight: 600;">
+                <span>Civic Literacy Progress</span>
+                <span id="civic-progress-pct" style="color: var(--accent-cyan);">15%</span>
+              </div>
+              <div class="stat-progress-bar">
+                <div class="stat-progress-fill" id="civic-progress-fill" style="width: 15%;"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Futuristic Interactive Civic Orb Visual -->
+        <div class="hero-visual">
+          <div class="interactive-civic-orb">
+            <div class="orb-ring"></div>
+            <div class="orb-ring-inner"></div>
+            <div class="orb-icon">🗳️</div>
+            <h3 class="orb-title">Voter Empowerment</h3>
+            <p class="orb-desc">Conduct of Elections Rules, 1961</p>
+          </div>
+
+          <!-- Floating Metric Badges -->
+          <div class="floating-badge badge-top-right">
+            <span style="font-size: 1.5rem;">🇮🇳</span>
+            <div>
+              <div class="badge-number">968 Million+</div>
+              <div class="badge-text">Registered Electors</div>
+            </div>
+          </div>
+
+          <div class="floating-badge badge-bottom-left">
+            <span style="font-size: 1.5rem;">🧾</span>
+            <div>
+              <div class="badge-number">100% VVPAT</div>
+              <div class="badge-text">Paper Audit Trail</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick Scale Metrics Bar -->
+      <div class="container">
+        <div class="metrics-grid">
+          <div class="metric-card saffron">
+            <div class="metric-value">968M+</div>
+            <div class="metric-label">Largest Democratic Electorate</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-value">1.05M+</div>
+            <div class="metric-label">Manned Polling Stations</div>
+          </div>
+          <div class="metric-card cyan">
+            <div class="metric-value">55 Lakh+</div>
+            <div class="metric-label">Standalone EVMs & VVPATs</div>
+          </div>
+          <div class="metric-card green">
+            <div class="metric-value">100%</div>
+            <div class="metric-label">Voter Verifiable Paper Trail</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MODULE 2: ELECTION JOURNEY (ROADMAP) -->
+    <section class="section" id="journey">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Interactive Process</span>
+          <h2 class="section-title">The Complete <span class="gradient-text">Election Journey</span></h2>
+          <p class="section-subtitle">
+            From initial voter list revision to final declaration: explore the statutory safeguards that protect every ballot.
+          </p>
+        </div>
+
+        <div class="journey-roadmap">
+          <div class="journey-progress-track">
+            <div class="journey-progress-indicator"></div>
+          </div>
+          <div id="journey-steps-list"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MODULE 3: TIMELINE & COUNTDOWN -->
+    <section class="section" id="timeline" style="background: rgba(15, 23, 42, 0.4);">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag saffron">Schedule & Stages</span>
+          <h2 class="section-title">Election <span class="gradient-text">Timeline & Countdown</span></h2>
+          <p class="section-subtitle">
+            Track key milestones across pre-poll preparations, multi-phase voting days, and counting day.
+          </p>
+        </div>
+
+        <!-- Live Countdown Timer -->
+        <div class="countdown-box-wrapper">
+          <div class="countdown-info">
+            <h3>⏳ Demo Phase 1 Polling Day Countdown</h3>
+            <p>Target Date: November 05, 2026 • 07:00 AM IST</p>
+          </div>
+          <div class="countdown-timer">
+            <div class="time-segment">
+              <div class="time-digit" id="timer-days">00</div>
+              <div class="time-label">Days</div>
+            </div>
+            <div class="time-segment">
+              <div class="time-digit" id="timer-hours">00</div>
+              <div class="time-label">Hours</div>
+            </div>
+            <div class="time-segment">
+              <div class="time-digit" id="timer-mins">00</div>
+              <div class="time-label">Minutes</div>
+            </div>
+            <div class="time-segment">
+              <div class="time-digit" id="timer-secs">00</div>
+              <div class="time-label">Seconds</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline-filter-tabs">
+          <button type="button" class="timeline-tab-btn active" data-filter="all">All Stages</button>
+          <button type="button" class="timeline-tab-btn" data-filter="pre-poll">Pre-Poll</button>
+          <button type="button" class="timeline-tab-btn" data-filter="polling days">Polling Days</button>
+          <button type="button" class="timeline-tab-btn" data-filter="counting">Counting & Post-Poll</button>
+        </div>
+
+        <div class="timeline-cards-grid" id="timeline-cards-grid"></div>
+      </div>
+    </section>
+
+    <!-- MODULE 4: EXPLAIN IT SIMPLY -->
+    <section class="section" id="explain">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag green">Adaptive Knowledge</span>
+          <h2 class="section-title">Explain It <span class="gradient-text">Simply</span></h2>
+          <p class="section-subtitle">
+            Switch between 3 difficulty modes: friendly analogies, exam-ready facts, or legal and procedural depth.
+          </p>
+        </div>
+
+        <div class="modes-switch-container">
+          <div class="modes-switch-pill" role="tablist" aria-label="Explanation Modes">
+            <button type="button" class="mode-tab-btn active" data-mode="beginner" role="tab">🟢 Beginner (ELI5)</button>
+            <button type="button" class="mode-tab-btn" data-mode="student" role="tab">🔵 Student (Exam-Ready)</button>
+            <button type="button" class="mode-tab-btn" data-mode="detailed" role="tab">🟣 Detailed (Legal & Rules)</button>
+          </div>
+        </div>
+
+        <div class="explain-cards-grid" id="explain-cards-grid"></div>
+      </div>
+    </section>
+
+    <!-- MODULE 5: ELECTION SIMULATOR (MAIN WOW FEATURE) -->
+    <section class="section" id="simulator" style="background: rgba(8, 14, 30, 0.65);">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag saffron">Hands-On Simulation</span>
+          <h2 class="section-title">Interactive <span class="gradient-text">Election Simulator</span></h2>
+          <p class="section-subtitle">
+            Step into the official polling booth. Experience the tactile Balloting Unit, view the 7-second VVPAT paper trail with authentic sound, and simulate vote counting.
+          </p>
+        </div>
+
+        <!-- Simulation Disclaimer Banner -->
+        <div class="simulation-banner" role="alert">
+          <span class="badge-pulse">DISCLAIMER</span>
+          <span data-i18n="simBanner">FICTIONAL EDUCATIONAL SIMULATION – FOR DEMONSTRATION & CIVIC AWARENESS ONLY</span>
+        </div>
+
+        <div class="simulator-wrapper">
+          <div class="simulator-toolbar">
+            <div class="sim-status-indicator">
+              <span class="sim-led-dot" id="cu-status-led"></span>
+              <span id="cu-status-text" style="font-family: var(--font-heading);">EVM CU: READY FOR VOTER</span>
+            </div>
+
+            <div class="sim-controls-group">
+              <div style="font-size: 0.9rem; color: var(--text-secondary);">
+                Votes Recorded on CU: <strong id="cu-total-votes-display" style="color: var(--accent-cyan); font-family: var(--font-heading); font-size: 1.1rem;">0</strong>
+              </div>
+              <button type="button" class="btn btn-secondary btn-sm" id="sim-reset-btn">🔄 Reset EVM</button>
+            </div>
+          </div>
+
+          <div class="evm-booth-stage">
+            <!-- 1. Balloting Unit (BU) -->
+            <div class="evm-balloting-unit">
+              <div class="bu-header">
+                <div class="bu-label">BALLOTING UNIT (M3 EVM)</div>
+                <div class="bu-ready-indicator"><span class="bu-ready-led"></span> READY</div>
+              </div>
+              <div class="bu-candidates-list" id="bu-candidates-list"></div>
+            </div>
+
+            <!-- 2. VVPAT & Feedback -->
+            <div style="display: flex; flex-direction: column; gap: 1.5rem;">
+              <div class="evm-vvpat-unit">
+                <div class="vvpat-header">VVPAT PAPER AUDIT TRAIL</div>
+                <div class="vvpat-window-frame" id="vvpat-frame">
+                  <div class="vvpat-window-glass"></div>
+                  <div class="vvpat-lamp-reflection"></div>
+                  <div class="vvpat-paper-slip" id="vvpat-slip">
+                    <div class="slip-eci-watermark">ECI VVPAT SLIP • SECURE</div>
+                    <div class="slip-candidate-row">
+                      <span class="slip-serial" id="slip-serial">1</span>
+                      <span class="slip-name" id="slip-name">Aarav Sharma</span>
+                      <span class="slip-symbol" id="slip-symbol">🚀</span>
+                    </div>
+                    <div class="slip-footer">AUDIT RECORDED • RULE 49A</div>
+                  </div>
+                </div>
+
+                <div class="vvpat-timer-notice">
+                  <span>⏱️ Slip Display:</span>
+                  <span class="vvpat-timer-badge" id="vvpat-timer-display">7s</span>
+                  <span>(Conduct of Elections Rules)</span>
+                </div>
+              </div>
+
+              <!-- Indelible Ink Digital Card -->
+              <div class="ink-mark-card">
+                <div class="finger-graphic">
+                  ☝️
+                  <div class="ink-spot" id="digital-ink-spot"></div>
+                </div>
+                <div class="ink-text">
+                  <strong>Voter Verification Status</strong>
+                  <span id="ink-status-text">Voter finger uninked (Ready for Polling Officer verification)</span>
+                </div>
+              </div>
+
+              <button type="button" class="btn btn-primary" id="sim-start-counting-btn" style="width: 100%;">
+                📊 Simulate Counting Room
+              </button>
+            </div>
+          </div>
+
+          <!-- Counting Center Station -->
+          <div class="counting-station-wrapper" id="sim-counting-station" style="display: none;">
+            <div class="counting-header">
+              <h3 style="font-family: var(--font-heading); font-size: 1.4rem;">🏛️ Counting Hall Simulation</h3>
+              <p style="color: var(--text-secondary); font-size: 0.9rem;">
+                Simulating round-by-round decryption of Control Units under ECI observers and party agents.
+              </p>
+            </div>
+
+            <div class="counting-bars-container" id="counting-bars-container"></div>
+            <div id="winner-declaration-box" class="glass-card" style="display: none; padding: 1.8rem; text-align: center; border-color: var(--accent-green); background: rgba(16, 185, 129, 0.1);"></div>
+          </div>
+
+          <!-- Certificate Section -->
+          <div id="sim-certificate-section" style="display: none; margin-top: 2.5rem;">
+            <div class="certificate-preview-card">
+              <div class="cert-emblem">🇮🇳</div>
+              <div class="cert-title" data-i18n="certTitle">CERTIFICATE OF CIVIC LITERACY</div>
+              <div class="cert-subtitle">ELECTO DEMOCRATIC PARTICIPATION ACCREDITATION</div>
+              
+              <div style="margin: 1rem 0;">
+                <label for="cert-name-input" style="display: block; font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 0.4rem;">
+                  Enter Your Name for the Official Civic Certificate:
+                </label>
+                <input type="text" id="cert-name-input" value="Informed Indian Citizen" style="background: rgba(255,255,255,0.1); border: 1px solid var(--accent-cyan); color: #fff; padding: 0.5rem 1rem; border-radius: var(--radius-sm); font-size: 1.1rem; text-align: center; width: 320px; outline: none;">
+              </div>
+
+              <div class="cert-recipient-name" id="cert-name-display">Informed Indian Citizen</div>
+
+              <p class="cert-body-text">
+                Has successfully completed the interactive EVM & VVPAT audit trail simulation, verified voting confidentiality procedures under the Conduct of Elections Rules 1961, and pledged to be an active, verified, and informed voter.
+              </p>
+
+              <button type="button" class="btn btn-primary" id="download-cert-btn" data-i18n="certBtnDownload">
+                📥 Download Certificate (PNG)
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MODULE 6: BEFORE YOU SHARE (FACT CHECKER & QUIZ) -->
+    <section class="section" id="fact-check">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag saffron">Misinformation Sandbox</span>
+          <h2 class="section-title">Before You <span class="gradient-text">Share</span></h2>
+          <p class="section-subtitle">
+            Viral political claims and election rumors debunked using official Election Commission directives and Supreme Court case laws.
+          </p>
+        </div>
+
+        <div class="fact-filters-bar">
+          <button type="button" class="fact-filter-btn active" data-filter="all">All Entries</button>
+          <button type="button" class="fact-filter-btn" data-filter="verified">🟢 Verified Facts</button>
+          <button type="button" class="fact-filter-btn" data-filter="needs-context">🟡 Needs Context</button>
+          <button type="button" class="fact-filter-btn" data-filter="debunked">🔴 Debunked / False</button>
+        </div>
+
+        <div class="fact-cards-grid" id="fact-cards-grid"></div>
+
+        <!-- Misinformation Radar Challenge Game -->
+        <div class="quiz-radar-container">
+          <div class="quiz-header">
+            <div>
+              <span class="section-tag" style="margin-bottom: 0.4rem;">Interactive Challenge</span>
+              <h3 style="font-family: var(--font-heading); font-size: 1.6rem;" data-i18n="quizTitle">
+                Misinformation Radar Challenge
+              </h3>
+              <p style="color: var(--text-secondary); font-size: 0.92rem;">
+                Can you identify fake WhatsApp forwards and misleading election claims? Test your civic radar!
+              </p>
+            </div>
+            <div style="display: flex; align-items: center; gap: 1rem;">
+              <span id="quiz-question-counter" style="font-size: 0.88rem; color: var(--accent-cyan); font-weight: 700;">Scenario 1 of 5</span>
+              <span id="quiz-live-score" style="font-size: 0.88rem; background: rgba(59, 130, 246, 0.2); padding: 0.3rem 0.8rem; border-radius: var(--radius-full); font-weight: 700;">Score: 0/5</span>
+            </div>
+          </div>
+
+          <div id="quiz-question-card-wrapper">
+            <div class="quiz-question-card">
+              <div class="quiz-simulated-msg" id="quiz-forward-message"></div>
+              <div class="quiz-options-grid" id="quiz-options-container">
+                <button type="button" class="quiz-opt-btn" data-verdict="verified">🟢 Verified Fact</button>
+                <button type="button" class="quiz-opt-btn" data-verdict="needs-context">🟡 Needs Context</button>
+                <button type="button" class="quiz-opt-btn" data-verdict="debunked">🔴 Debunked / Fake</button>
+              </div>
+              <div class="quiz-feedback-box" id="quiz-feedback-box"></div>
+              <div style="margin-top: 1.5rem; text-align: right;">
+                <button type="button" class="btn btn-primary btn-sm" id="quiz-next-btn" style="display: none;">Next Scenario →</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MODULE 7: WHO DOES WHAT? (ROLES) -->
+    <section class="section" id="roles" style="background: rgba(15, 23, 42, 0.3);">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag green">Civic Architecture</span>
+          <h2 class="section-title">Who Does <span class="gradient-text">What?</span></h2>
+          <p class="section-subtitle">
+            Democracy functions through a robust division of statutory checks and balances.
+          </p>
+        </div>
+        <div class="roles-grid" id="roles-grid"></div>
+      </div>
+    </section>
+  </main>
+
+  <!-- MODALS -->
+  <!-- 1. Deep Dive Modal -->
+  <dialog id="journey-detail-modal" class="journey-drawer">
+    <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1.2rem;">
+      <div>
+        <span class="step-mini-tag legal" id="modal-step-badge">PHASE DETAILS</span>
+        <h3 id="modal-step-title" style="font-family: var(--font-heading); font-size: 1.6rem; margin-top: 0.4rem;"></h3>
+      </div>
+      <button type="button" class="control-btn dialog-close-btn" aria-label="Close dialog">✕</button>
+    </div>
+
+    <div style="display: flex; flex-direction: column; gap: 1.2rem; font-size: 0.95rem; color: var(--text-secondary);">
+      <div>
+        <strong style="color: var(--text-primary);">⚖️ Legal Basis & Acts:</strong>
+        <p id="modal-step-legal" style="margin-top: 0.2rem;"></p>
+      </div>
+      <div>
+        <strong style="color: var(--text-primary);">📋 Statutory Forms:</strong>
+        <ul id="modal-step-forms" style="margin-top: 0.4rem; padding-left: 1.2rem;"></ul>
+      </div>
+      <div>
+        <strong style="color: var(--text-primary);">💡 Key Safeguard Insight:</strong>
+        <p id="modal-step-insight" style="margin-top: 0.2rem;"></p>
+      </div>
+      <div style="background: rgba(16, 185, 129, 0.1); border-left: 3px solid #10b981; padding: 0.85rem; border-radius: 6px;">
+        <strong style="color: #10b981;">👉 Citizen Action:</strong>
+        <p id="modal-step-citizen" style="margin-top: 0.2rem; color: var(--text-primary);"></p>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- 2. Smart Search Modal (Ctrl + K) -->
+  <dialog id="search-dialog-modal" class="search-modal">
+    <div class="search-input-header">
+      <span style="font-size: 1.2rem;">🔍</span>
+      <input type="search" id="global-search-input" placeholder="Search EVM, rules, forms, voter rights (Ctrl+K)..." autocomplete="off">
+      <button type="button" class="control-btn dialog-close-btn" aria-label="Close search">✕</button>
+    </div>
+    <div class="search-results-list" id="search-results-list"></div>
+    <div class="search-modal-footer">
+      <span>Tip: Press <kbd style="background: rgba(255,255,255,0.1); padding: 2px 6px; border-radius: 4px;">Ctrl+K</kbd> or <kbd style="background: rgba(255,255,255,0.1); padding: 2px 6px; border-radius: 4px;">/</kbd></span>
+      <span>ELECTO Smart Civic Index</span>
+    </div>
+  </dialog>
+
+  <!-- 3. Badges Shelf Modal -->
+  <dialog id="badges-shelf-modal" class="journey-drawer" style="max-width: 550px;">
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+      <h3 style="font-family: var(--font-heading); font-size: 1.5rem;">🏆 Civic Achievement Shelf</h3>
+      <button type="button" class="control-btn dialog-close-btn" aria-label="Close dialog">✕</button>
+    </div>
+    <div id="badges-shelf-container" style="display: flex; flex-direction: column; gap: 0.8rem;"></div>
+  </dialog>
+
+  <!-- Confetti Canvas -->
+  <canvas id="confetti-canvas"></canvas>
+
+  <!-- Floating Back to Top Button -->
+  <button type="button" class="back-to-top-btn" id="back-to-top-btn" aria-label="Back to top">↑</button>
+
+  <!-- Toast Notification Root -->
+  <div class="toast-container" id="toast-notifications-root" aria-live="polite"></div>
+
+  <!-- JavaScript Modules -->
+  <script src="js/sound.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/simulator.js"></script>
+  <script src="js/quiz.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
